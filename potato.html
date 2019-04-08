@@ -25,44 +25,14 @@
 </style>
 
 <body>
-		<button onclick="tiltdown()">UpDown</button>
-				<button id="button1" class="block" onclick="lamboScreen()"><span>ShowLambo</span></button>
-
+		
+	<button id="button1" class="block" onclick="lamboScreen()"><span>ShowLambo</span></button>
 	<script>
-		function sleep(ms) {
-			return new Promise(resolve => setTimeout(resolve, ms));
-		}
-		async function tiltdown(){
-			// Ohmni.setNeckTorqueEnabled(1);
-			// Ohmni.setNeckPosition(649, 80);
-			// await sleep(500);
-			// Ohmni.setNeckPosition(512, 150);
-			// await sleep(1000);
-			// Ohmni.setNeckTorqueEnabled(0);
-			Ohmni.move(-1000,-1000,300);
-			var sleep_a = 400;
-			await sleep(sleep_a);
-			Ohmni.move(1000,1000,300);
-			await sleep(sleep_a);
-			Ohmni.move(-1000,-1000,300);
-			await sleep(sleep_a);
-			Ohmni.move(1000,1000,300);
-			await sleep(sleep_a);
-			Ohmni.move(-1000,-1000,300);
-			await sleep(sleep_a);
-			Ohmni.move(1000,1000,300);
-			await sleep(sleep_a);
-		}
-
-		function sleep(ms) {
-			return new Promise(resolve => setTimeout(resolve, ms));
-		}
 		function lamboScreen(){
 			Ohmni.showPageOnBot("http://idolosol.com/images/lambo-4.jpg");
 			document.getElementById("button1").style.background='#FFDF00';
 		}
-
-</script>
+	</script>
 
 </body>
 
