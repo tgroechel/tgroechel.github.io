@@ -45,14 +45,14 @@ div.unclickable {
 
 </style>
 <body>
-    <button onclick="tiltdown()">Wiggle</button>
-    <button onclick="lights()">Rainbow Lights</button>
-    <button onclick="loadAudioContext()">Start Audio Sensing</button>
+    <button onclick="tiltdown()" data-external="true">Wiggle</button>
+    <button onclick="lights()" data-external="true">Rainbow Lights</button>
+    <button onclick="loadAudioContext()" data-external="true">Start Audio Sensing</button>
     <!--URL:<input type="string" name="url_string" id= "url_string"> document.getElementById('url_string').value-->
-    <button onclick="changeURLOn()">RaiseHand</button>
-    <button onclick="changeURLOff()">LowerHand</button>
-    <button onclick="changeURLOn2()">Get Attention</button>
-    <button onclick="changeURLOff()">Turn Off Attention</button>
+    <button onclick="changeURLOn()" data-external="true">RaiseHand</button>
+    <button onclick="changeURLOff()" data-external="true">LowerHand</button>
+    <button onclick="changeURLOn2()" data-external="true">Get Attention</button>
+    <button onclick="changeURLOff()" data-external="true">Turn Off Attention</button>
     Threshold talking (0-1):
     <div class="slidecontainer">
         <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange">
