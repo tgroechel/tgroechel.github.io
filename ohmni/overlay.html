@@ -45,12 +45,14 @@ div.unclickable {
 
 </style>
 <body>
-    <button onclick="tiltdown()">UpDown</button>
-    <button onclick="lights()">Lights</button>
-    <button onclick="loadAudioContext()">Start Red</button>
-    URL:<input type="string" name="url_string" id= "url_string">
-    <button onclick="changeURLOn(document.getElementById('url_string').value)"> Trigger URL on</button>
-    <button onclick="changeURLOff()">Turn URL off</button>
+    <button onclick="tiltdown()">Wiggle</button>
+    <button onclick="lights()">Rainbow Lights</button>
+    <button onclick="loadAudioContext()">Start Audio Sensing</button>
+    <!--URL:<input type="string" name="url_string" id= "url_string"> document.getElementById('url_string').value-->
+    <button onclick="changeURLOn()">RaiseHand</button>
+    <button onclick="changeURLOff()">LowerHand</button>
+    <button onclick="changeURLOn2()">Get Attention</button>
+    <button onclick="changeURLOff()">Turn Off Attention</button>
     Threshold talking (0-1):
     <div class="slidecontainer">
         <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange">
@@ -93,9 +95,8 @@ div.unclickable {
             await sleep(sleep_a);
             Ohmni.move(1000,1000,300);
             await sleep(sleep_a);
-
-
         }
+
         async function lights(){
             var frequency = .3;
 
@@ -114,13 +115,18 @@ div.unclickable {
                 loadAudioContext();
             }
         })
-        function changeURLOn(url_string){
-            Ohmni.showPageOnBot(url_string);
+        function changeURLOn(){
+            Ohmni.showPageOnBot("https://cdn4.iconfinder.com/data/icons/hand-movements-vol-1/32/fingers_hand_wave_raise_raising-512.png");
             console.log("Showing " + url_string);
         }
         function changeURLOff(){
             Ohmni.hidePageOnBot();
         }
+         function changeURLOn2(){
+            Ohmni.showPageOnBot("https://cdn3.iconfinder.com/data/icons/messaging-and-communication/32/message_speech_bubble_alert_notification_important-512.png");
+            console.log("Showing " + url_string);
+        }
+
 
     </script>
     <div class="unclickable">
