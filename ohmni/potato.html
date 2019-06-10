@@ -43,17 +43,45 @@ div.unclickable {
     pointer-events: none
 } 
 
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 30%;
+  top: 25%;
+  left: 0;
+  right: 0;
+  bottom: 25%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
 </style>
 <body>
-    <button onclick="tiltdown()" data-external="true">Wiggle</button>
+    <button onclick="wiggle()" data-external="true">Wiggle</button>
     <button onclick="lights()" data-external="true">Rainbow Lights</button>
-    <button onclick="loadAudioContext()" data-external="true">Start Audio Sensing</button>
+<!--     <button onclick="loadAudioContext()" data-external="true">Start Audio Sensing</button> -->
     <!--URL:<input type="string" name="url_string" id= "url_string"> document.getElementById('url_string').value-->
     <button onclick="changeURLOn()" data-external="true">RaiseHand</button>
     <button onclick="changeURLOff()" data-external="true">LowerHand</button>
-    <button onclick="changeURLOn2()" data-external="true">Get Attention</button>
-    <button onclick="changeURLOff()" data-external="true">Turn Off Attention</button>
-    Threshold talking (0-1):
+    <button onclick="getAttention()" data-external="true">Get Attention</button>
+
+    <div id="overlay" data-external="true">
+  		<div id="text">Your hand is currently raised</div>
+	</div>
+
+    <!-- Threshold talking (0-1):
     <div class="slidecontainer">
         <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange">
     </div>
@@ -70,12 +98,12 @@ div.unclickable {
     </div>
         <div class="slidecontainer">
         <input type="range" min="0" max="1000" value="500" step="10" class="slider" id="myRange4">
-    </div>
+    </div> -->
     <script>
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        async function tiltdown(){
+        async function wiggle(){
             // Ohmni.setNeckTorqueEnabled(1);
             // Ohmni.setNeckPosition(649, 80);
             // await sleep(500);
@@ -116,15 +144,17 @@ div.unclickable {
             }
         })
         function changeURLOn(){
-            Ohmni.showPageOnBot("https://cdn4.iconfinder.com/data/icons/hand-movements-vol-1/32/fingers_hand_wave_raise_raising-512.png");
-            console.log("Showing " + url_string);
+            Ohmni.showPageOnBot("tgroechel.github.io/ohmni/raise_hand_image.html");
+            document.getElementById("overlay").style.display = "block";
         }
         function changeURLOff(){
             Ohmni.hidePageOnBot();
+            document.getElementById("overlay").style.display = "none";
         }
-         function changeURLOn2(){
-            Ohmni.showPageOnBot("https://cdn3.iconfinder.com/data/icons/messaging-and-communication/32/message_speech_bubble_alert_notification_important-512.png");
-            console.log("Showing " + url_string);
+        async function getAttention(){
+            Ohmni.showPageOnBot("tgroechel.github.io/ohmni/get_attention_image.html");
+            await sleep(2000);
+           Ohmni.hidePageOnBot();
         }
 
 
