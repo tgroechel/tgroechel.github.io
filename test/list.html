@@ -18,6 +18,34 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+
+.button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button1:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+
 #myInput0 {
   background-image: url('css/searchicon.png');
   background-position: 6px 6px;
@@ -68,6 +96,9 @@ tr:nth-child(even) {
 <h2>Women in Robotics Research <a href="list.csv" download>
   (Download List)
 </a></h2>
+<a href="https://docs.google.com/forms/d/1N-CY4AZK38SU2r86aazEJNDjdChOfCAY4gvCG1c3y1s/" target="_blank">
+  <button class="button button1">Request to Add Someone to List</button>
+</a>
 
 <input type="text" id="myInput0" onkeyup="searchLookUp(0)" placeholder="Search by Last Name..." title="Type in a name">
 <input type="text" id="myInput1" onkeyup="searchLookUp(1)" placeholder="Search by First Name..." title="Type in a name">
