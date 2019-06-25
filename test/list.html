@@ -25,13 +25,13 @@ tr:nth-child(even) {
   (Download)
 </a></h2>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "list.csv",
+        url: "https://tgroechel.github.io/test/list.csv",
         dataType: "text",
         success: function(data) {processData(data);}
      });
