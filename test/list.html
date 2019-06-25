@@ -31,7 +31,7 @@ tr:nth-child(even) {
   $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "https://tgroechel.github.io/test/list.csv",
+        url: "list.csv",
         dataType: "text",
         success: function(data) {processData(data);}
      });
