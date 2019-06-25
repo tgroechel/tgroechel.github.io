@@ -112,6 +112,7 @@ function csvToArray(text) {
 
     var allTextLines = csvToArray(allText);
     var headers = allTextLines[0];
+    console.log(allTextLines);
     
     var header = newTable.createTHead();
     var row0 = header.insertRow(0);
