@@ -17,17 +17,67 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+#myInput0 {
+  background-image: url('css/searchicon.png');
+  background-position: 6px 6px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInput1 {
+  background-image: url('css/searchicon.png');
+  background-position: 6px 6px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInput2 {
+  background-image: url('css/searchicon.png');
+  background-position: 6px 6px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInput3 {
+  background-image: url('css/searchicon.png');
+  background-position: 6px 6px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+
+
 </style>
 </head>
 <body>
 
-<h2>Basic Table <a href="list.csv" download>
-  (Download)
+<h2>Women in Robotics Research <a href="list.csv" download>
+  (Download List)
 </a></h2>
+
+<input type="text" id="myInput0" onkeyup="searchLookUp(0)" placeholder="Search by Last Name..." title="Type in a name">
+<input type="text" id="myInput1" onkeyup="searchLookUp(1)" placeholder="Search by First Name..." title="Type in a name">
+<input type="text" id="myInput2" onkeyup="searchLookUp(2)" placeholder="Search by Year of PhD..." title="Type in a name">
+<input type="text" id="myInput3" onkeyup="searchLookUp(3)" placeholder="Search by Research Topic(s)..." title="Type in a name">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+
   $(document).ready(function() {
     $.ajax({
         type: "GET",
@@ -35,7 +85,7 @@ tr:nth-child(even) {
         dataType: "text",
         success: function(data) {processData(data);}
      });
-});
+  });
 
   // clean this up later
   function processData(allText){
@@ -53,7 +103,6 @@ tr:nth-child(even) {
           newCell.innerHTML = "<b>" + headers[i] + "</b>";
     }
 
-
     for (var i=1; i<allTextLines.length; i++) {
         var rowX  = newTable.insertRow(i);
         var data = allTextLines[i].split(',');
@@ -66,7 +115,25 @@ tr:nth-child(even) {
     }
   }
 
-  
+  function searchLookUp(searchIndex) {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput" + searchIndex);
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 1; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[searchIndex];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
 </script>
 
 </body>
