@@ -37,24 +37,36 @@ tr:nth-child(even) {
      });
 });
 
+  // clean this up later
   function processData(allText){
+    var newTable = document.createElement("TABLE");
+    newTable.setAttribute("id", "myTable");
+    document.body.appendChild(newTable);
+
     var allTextLines = allText.split(/\r\n|\n/);
     var headers = allTextLines[0].split(',');
-    var lines = [];
+    
+    var header = newTable.createTHead();
+    var row0 = header.insertRow(0);
+    for(var i = 0; i < headers.length; ++i){
+          var newCell = row0.insertCell(i);
+          newCell.innerHTML = "<b>" + headers[i] + "</b>";
+    }
+
 
     for (var i=1; i<allTextLines.length; i++) {
+        var rowX  = newTable.insertRow(i);
         var data = allTextLines[i].split(',');
         if (data.length == headers.length) {
-
-            var tarr = [];
-            for (var j=0; j<headers.length; j++) {
-                tarr.push(headers[j]+":"+data[j]);
-            }
-            lines.push(tarr);
+          for(var j = 0; j < headers.length; ++j){
+          var newCell = rowX.insertCell(j);
+          newCell.innerHTML = data[j];
         }
+      }
     }
-    alert(lines);
   }
+
+  
 </script>
 
 </body>
