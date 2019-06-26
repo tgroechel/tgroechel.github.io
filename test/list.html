@@ -56,6 +56,19 @@ tr:nth-child(even) {
   color: white;
 }
 
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #990000;
+}
+
+.button3:hover {
+  background-color: #990000;
+  color: white;
+}
+
+
+
 #myInput0 {
   background-image: url('css/searchicon.png');
   background-position: 6px 6px;
@@ -103,14 +116,15 @@ tr:nth-child(even) {
 </head>
 <body>
 
-<h2>Women in US Robotics Research <a href="list.csv" download>
-  (Download List)
-</a></h2>
+<h2>Women in US Robotics Research</h2>
 <a href="https://docs.google.com/forms/d/1N-CY4AZK38SU2r86aazEJNDjdChOfCAY4gvCG1c3y1s/" target="_blank">
   <button class="button button1">Request to Add Someone to List</button>
 </a>
 <a href="https://docs.google.com/forms/d/19kVUgy9F7bFfqehxZw45ENItS67Sn_SYXWOASykAFO0" target="_blank">
   <button class="button button2">Report Correction or Update</button>
+</a>
+<a href="list.csv" download>
+  <button class="button button3">Download List as CSV</button>
 </a>
 
 <input type="text" id="myInput0" onkeyup="searchLookUp(0)" placeholder="Search by Last Name..." title="Type in a name">
@@ -153,10 +167,8 @@ function csvToArray(text) {
     newTable.setAttribute("id", "myTable");
     document.body.appendChild(newTable);
 
-
     var allTextLines = csvToArray(allText);
     var headers = allTextLines[0];
-    console.log(allTextLines);
     
     var header = newTable.createTHead();
     var row0 = header.insertRow(0);
@@ -170,8 +182,8 @@ function csvToArray(text) {
         var data = allTextLines[i];
         if (data.length == headers.length) {
           for(var j = 0; j < headers.length; ++j){
-          var newCell = rowX.insertCell(j);
-          newCell.innerHTML = data[j];
+            var newCell = rowX.insertCell(j);
+            newCell.innerHTML = data[j];
         }
       }
     }
