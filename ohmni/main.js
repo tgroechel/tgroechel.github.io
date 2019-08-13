@@ -114,8 +114,8 @@ function drawLoop( time ) {
 
     ctx.globalAlpha = lastAlpha;
 
-    console.log(slider1.value, slider2.value, slider3.value, slider4.value);
-
+    //console.log(slider1.value, slider2.value, slider3.value, slider4.value);
+    console.log(meter.volume);
     var fullScreenRadius = Math.min(window.innerWidth/2.0, window.innerHeight/2.0);
     var circleRadius = fullScreenRadius - volumeRadiusChange;
     var grd = ctx.createRadialGradient(
