@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://app.ohmnilabs.com/api/Ohmni-incall.js"></script>
+<script src="volume-meter.js"></script>
+<script src="main.js"></script> 
+<style>
+.slidecontainer {
+  width: 100%;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+div.unclickable {
+    pointer-events: none
+} 
+</style>
+<body>
+    <button onclick="tiltdown()" data-external="true">Wiggle</button>
+    <button onclick="lights()" data-external="true">Rainbow Lights</button>
+    <button onclick="loadAudioContext()" data-external="true">Start Audio Sensing</button>
+    <!--URL:<input type="string" name="url_string" id= "url_string"> document.getElementById('url_string').value-->
+    <button onclick="changeURLOn()" data-external="true">RaiseHand</button>
+    <button onclick="changeURLOff()" data-external="true">LowerHand</button>
+    <button onclick="changeURLOn2()" data-external="true">Get Attention</button>
+    <button onclick="changeURLOff()" data-external="true">Turn Off Attention</button>
+    Threshold talking (0-1):
+    <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange">
+    </div>
+    Lerping speed for alpha value (0-1):
+    <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange2">
+    </div>
+    Lerping speed for inner circle radius chang value (0-1):
+    </div>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange3">
+    </div>
+    Inner circle raidus multiplier based on volume change (0-1000):
+    </div>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="1000" value="500" step="10" class="slider" id="myRange4">
+    </div>
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function tiltdown(){
+            // Ohmni.setNeckTorqueEnabled(1);
+            // Ohmni.setNeckPosition(649, 80);
+            // await sleep(500);
+            // Ohmni.setNeckPosition(512, 150);
+            // await sleep(1000);
+            // Ohmni.setNeckTorqueEnabled(0);
+            Ohmni.move(-1000,-1000,300);
+            var sleep_a = 400;
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(-1000,-1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(-1000,-1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+        }
+        async function lights(){
+            var frequency = .3;
+            
+            for(var i = 0; i < 50; ++i){
+                var red   = Math.sin(frequency*i + 0) * 127 + 128;
+                var green = Math.sin(frequency*i + 2) * 127 + 128;
+                var blue  = Math.sin(frequency*i + 4) * 127 + 128;
+                Ohmni.setLightColor(red, green, blue);
+                await sleep(100);
+            }
+        }
+        Ohmni.on('capi', function(msg){
+            console.log(msg.data);
+            if(msg.data == "started"){
+                loadAudioContext();
+            }
+        })
+        function changeURLOn(){
+            Ohmni.showPageOnBot("https://cdn4.iconfinder.com/data/icons/hand-movements-vol-1/32/fingers_hand_wave_raise_raising-512.png");
+            console.log("Showing " + url_string);
+        }
+        function changeURLOff(){
+            Ohmni.hidePageOnBot();
+        }
+         function changeURLOn2(){
+            Ohmni.showPageOnBot("https://cdn3.iconfinder.com/data/icons/messaging-and-communication/32/message_speech_bubble_alert_notification_important-512.png");
+            console.log("Showing " + url_string);
+        }
+    </script>
+    <div class="unclickable">
+        <canvas id="meter" width="500" height="50"></canvas>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://app.ohmnilabs.com/api/Ohmni-incall.js"></script>
+<script src="volume-meter.js"></script>
+<script src="main.js"></script> 
+<style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.btn-group .green_button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid green;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  width: 150px;
+  display: block;
+}
+.btn-group .green_button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group .green_button:hover {
+  background-color: #3e8e41;
+}
+
+div.unclickable {
+    pointer-events: none
+} 
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 30%;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 25%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+</style>
+<body>
+	<div class="btn-group">
+	    <button onclick="wiggle()" data-external="true" class="green_button">Wiggle</button>
+	    <button onclick="lights()" data-external="true" class="green_button">Rainbow Lights</button>
+    <button onclick="loadAudioContext()" data-external="true">Start Audio Sensing</button>
+	    <!--URL:<input type="string" name="url_string" id= "url_string"> document.getElementById('url_string').value-->
+	    <button onclick="changeURLOn()" data-external="true" class="green_button">RaiseHand</button>
+	    <button onclick="changeURLOff()" data-external="true" class="green_button">LowerHand</button>
+	    <button onclick="getAttention()" data-external="true" class="green_button">Get Attention</button>
+    </div>
+    <div id="overlay" data-external="true">
+  		<div id="text">Your hand is currently raised</div>
+	</div>
+
+    <!-- Threshold talking (0-1):
+    <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange">
+    </div>
+    Lerping speed for alpha value (0-1):
+    <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange2">
+    </div>
+    Lerping speed for inner circle radius chang value (0-1):
+    </div>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="1" value="0.5" step="0.01" class="slider" id="myRange3">
+    </div>
+    Inner circle raidus multiplier based on volume change (0-1000):
+    </div>
+        <div class="slidecontainer">
+        <input type="range" min="0" max="1000" value="500" step="10" class="slider" id="myRange4">
+    </div> -->
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function wiggle(){
+            Ohmni.move(-1000,-1000,300);
+            var sleep_a = 400;
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(-1000,-1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(-1000,-1000,300);
+            await sleep(sleep_a);
+            Ohmni.move(1000,1000,300);
+            await sleep(sleep_a);
+        }
+
+        async function lights(){
+            var frequency = .3;
+
+            for(var i = 0; i < 50; ++i){
+                var red   = Math.sin(frequency*i + 0) * 127 + 128;
+                var green = Math.sin(frequency*i + 2) * 127 + 128;
+                var blue  = Math.sin(frequency*i + 4) * 127 + 128;
+
+                Ohmni.setLightColor(red, green, blue);
+                await sleep(100);
+            }
+        }
+        Ohmni.on('capi', function(msg){
+            console.log(msg.data);
+            if(msg.data == "started"){
+                loadAudioContext();
+            }
+        })
+        function changeURLOn(){
+            Ohmni.showPageOnBot("https://tgroechel.github.io/ohmni/raise_hand_image.html");
+            document.getElementById("overlay").style.display = "block";
+        }
+        function changeURLOff(){
+            Ohmni.hidePageOnBot();
+            document.getElementById("overlay").style.display = "none";
+        }
+        async function getAttention(){
+            Ohmni.showPageOnBot("https://tgroechel.github.io/ohmni/get_attention_image.html");
+            await sleep(2000);
+           Ohmni.hidePageOnBot();
+        }
+
+
+    </script>
+    <div class="unclickable">
+        <canvas id="meter" width="500" height="50"></canvas>
+    </div>
+</body>
+
+</html>
