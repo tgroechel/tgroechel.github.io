@@ -2,13 +2,10 @@
 <html>
 
 <body>
-    <h1>AutoCloseTab</h1>
+    <h1>Thank you for completing the survey, this will close in 5 seconds and redirect to your activity.</h1>
     <p id="demo"></p>
     <script>
-        window.onload = function() {
-            window.open('', '_self', ''); //bug fix
-            window.close();
-        };
+        setTimeout (window.close, 5000);
     </script>
 
 </body>
