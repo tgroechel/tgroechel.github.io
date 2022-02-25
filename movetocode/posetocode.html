@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PoseToCode</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+</head>
+
+<body>
+
+
+  <main class="container">
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <img src="assets/images/p2c.png" alt="logo2021" class="responsive mb-5" width="70%">
+      <p class="lead mb-5">PoseToCode is a web application where students create code blocks by doing different poses
+        requiring only a computer with a webcam. When the student makes the "run code" pose, the robot executes all the
+        actions from the code block chain. This is a part of a larger research effort from the <a
+          href="https://uscinteractionlab.web.app/">USC Interaction Lab</a> trying to answer the question "how can we
+        foster curiosity in STEM through kinesthetic learning?". The application was created using <a
+          href="https://google.github.io/mediapipe/">Google's Mediapipe</a> for pose detection, Google
+        funded/open-source community supported <a href="https://ml5js.org/">ml5.js</a> for pose classification, and
+        Google's <a href="https://developers.google.com/blockly">Blockly</a> for code blocks. PoseToCode took much of
+        its inspiration from the <a
+          href="http://static.zerorobotics.mit.edu/docs/team-activities/ProgrammingPeanutButterAndJelly.pdf">Making a
+          Peanut Butter and Jelly Sandwich</a> exercise given out to new programming students.
+      </p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-5 text-center justify-content-md-center">
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">What is "block-based" programming?</h4>
+          </div>
+          <div class="card-body">
+            <p>
+              A common problem when teaching introductory coding is the diffulty of text based coding. The files and
+              build process can be quite complex and unapproachable. Block-based programming takes away those
+              complexities allowing snapping code blocks together to do the same core operations text based code can.
+              This was popularized by <a href="https://scratch.mit.edu/">MIT's Scratch</a> and has a big presence on <a
+                href="https://code.org/">code.org</a>. You can use either of these websites for free to start out
+              learning programming!
+            </p>
+            <div class="ratio ratio-16x9"> https://www.youtube.com/watch?v=
+              <iframe src="https://www.youtube.com/embed/EAtOAM3mF6k" title='What is coding or "Block Programming"?'
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">What is kinesthetic/embodied learning?</h4>
+          </div>
+          <div class="card-body">
+            <p>
+              <a
+                href="https://waag.org/en/article/what-embodied-learning#:~:text=Embodied%20learning%20is%20an%20educational,of%20sand%20to%20each%20other.">Embodied
+                learning</a> (also know as kinesthetic learning) is the study of how we can have students use there
+              bodies/move to learn. There are many educational research projects going on around embodied learning such
+              as at the <a href="https://www.cyprusinteractionlab.com/publications/embd-gmfull-learning/">Cyprus
+                Interaction Lab</a>. A video from their lab is linked below.
+            </p>
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/kUJS5Q2w52k"
+                title="Embodied Education: Technology-Enhanced 4E Learning in the Classroom" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 fw-normal">Video of PoseToCode</h4>
+          </div>
+          <div class="card-body">
+            <p>
+              Below is a short demo video of PoseToCode. Chloe (one of the undergraduate researchers) is doing different poses in front of her laptop to create code blocks.  We are currently in the process of implementing a few new features for posing and content!
+            </p>
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/llR8AM7aggA" title="PoseToCode Short Demo Video" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <p class="lead mb-5">
+        Have questions? Feel free to contact <a href="mailto:groechel@usc.edu">Thomas Groechel (groechel@usc.edu)</a>.
+      </p>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-md-center">
+
+      <div class="col-12 pt-5 pb-3 member">
+        <h3>Currently working on PoseToCode</h3>
+      </div>
+
+    </div>
+
+    <hr />
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center" id="the-team">
+      <div class="col-12 col-lg-4 p-3 member">
+        <div class="card">
+          <div class="container pt-3" style="text-align: center;">
+            <img class="img-circle" src="assets/images/team/tomG.png" width="50%" height="auto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Thomas R. Groechel</h5>
+            <p class="card-subtitle mb-3 text-muted">Ph.D. Candidate @ University of Southern California</p>
+            <a href="https://tgroechel.github.io/" target="_blank" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 p-3 member">
+        <div class="card">
+          <div class="container pt-3" style="text-align: center;">
+            <img class="img-circle" src="assets/images/nisha.jpeg" width="50%" height="auto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Nisha Chatwani</h5>
+            <p class="card-subtitle mb-3 text-muted">Undergraduate @ University of Southern California</p>
+            <a href="https://nishachatwani.com/" target="_blank" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 p-3 member">
+        <div class="card">
+          <div class="container pt-3" style="text-align: center;">
+            <img class="img-circle" src="assets/images/chloe.jpeg" width="50%" height="auto">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Chloe Kuo</h5>
+            <p class="card-subtitle mb-3 text-muted">Undergraduate @ University of Southern California</p>
+            <a href="https://www.linkedin.com/in/chloemkuo/" target="_blank" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-md-center">
+
+      <div class="col-12 pt-5 pb-3 member">
+        <h3>Associated Organizations</h3>
+      </div>
+    </div>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+
+      <div class="row">
+        <div class="col-12 col-md">
+          <img class="mb-2" src="assets/images/nsflogo.png" width="150px" height="auto">
+          <p>Supported by the <a href="https://www.nsf.gov/">National Science Foundation (NSF)</a></p>
+        </div>
+        <div class="col-12 col-md">
+          <img class="mb-2" src="assets/images/lab logo yellow.png" width="100px" height="auto">
+          <p><a href="https://uscinteractionlab.web.app/">USC Interaction Lab</a></p>
+        </div>
+        <div class="col-12 col-md">
+          <img class="mb-2" src="assets/images/k12stemcenter.png" width="200px" height="auto">
+          <p><a href="https://viterbik12.usc.edu/">USC Viterbi K-12 STEM Center</a></p>
+        </div>
+        <div class="col-12 col-md">
+          <img class="mb-2" src="assets/images/USC-Viterbi.png" width="200px" height="auto">
+          <p><a href="https://viterbischool.usc.edu/">USC Viterbi School of Engineering</a></p>
+        </div>
+
+      </div>
+    </footer>
+  </main>
+
+
+</body>
+
+</html>
